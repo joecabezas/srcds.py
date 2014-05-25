@@ -1,0 +1,48 @@
+RELEASE_2_11
+* bugfix: the status() function would fail if there were no players present.
+* added capability to run the script directly, and either it will execute its
+  test suite, or it will run the given rcon command.
+* added more keys to the info dictionary (returned by the status function):
+  fps,cpu_usage,in,out,ip,port,uptime
+* added even more keys to the info dictionary (returned by the status functions):
+  secure,passworded,exe_version,server_os,server_type,current_botcount,max_players,
+  current_playercount,app_id,game_description,game_directory,current_map,server_name,
+  protocol_version,hl_version
+* added a bunch of docstrings
+RELEASE_2_10
+* MODIFICATION: the "status" function, rather than returning a list of
+  dictionaries, now returns two dictionaries.  The first dictionary (info) is a dictionary
+  containing 'version', 'map','players',and 'slots' that can be gleaned from the "rcon
+  status" command (more to come).  The second dictionary is a dictionary of player
+  dictionaries, with the keys being the user id's.  The contents of each individual player
+  dictionary is the
+  same as before.
+* bugfix: fixed 'IndexError' in the status function
+* added the following functions: ban, unban, restart, version, currentmap, nplayers
+* added the cvar patch (function to return the value of a console variable)
+* added simple unit testing of the module at the bottom
+
+RELEASE_2_02
+* Fixed details() bug which raised an exception when calculating 'app_id'
+
+RELEASE_2_01
+* Fixed players() bug which occured when players() was queried while a player was connecting
+* Fixed bug in status() where method didn't iterate past the first player
+* Fixed details() query to return 'app_id' instead of 'unknown1' and 'unknown2'
+
+RELEASE_2_00
+* Queries updated to use new request formats, and challenge numbers. 
+* SRCDS._any_response(QUERY) now supports multi-packet responses. 
+* SRCDS.__init__() now supports hostnames as well as ip. 
+* SRCDS.__init__() also supports timeout=secs argument, to specify upd/tcp socket timeouts. 
+* SRCDS now fully supports HL1 servers (with automatic discovery of hl 
+version), with HLDS subclassed from SRCDS for backwards compatibility 
+HLDS. 
+* No longer attempts tcp connection unless required for HL2 RCON 
+* RCON support almost completely rewritten: 
+* More accurate RCON password checking for Source 
+* Fixed multi-packet TCP recv bug from 1.01 
+* HL1 RCON support added (with automatic discovery of hl version) 
+* SRCDS.status() method rewritten without StringIO module 
+* Better Exception raising 
+* Some other minor bugfixes
