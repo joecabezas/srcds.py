@@ -280,7 +280,7 @@ No parsing is done by this function.
         returns the number of players present on the server.
         '''
         d = self.status()
-        return d['players']
+        return len(d[1])
 
     def cvar(self, var):
         '''
@@ -319,8 +319,8 @@ No parsing is done by this function.
                 info['name'] = parts[1].strip()
             elif kw == "players":
                 #players :  17 (24 max)
-                t = parts[1].split('(')
-                info['players']   = int(t[0])
+                t = parts[1].split(',')
+                info['players']   = int(t[0].split()[0])
                 info['slots'] = int(t[1].split()[0])
             line = lines.pop(0)
         keys = re.split(' +', line)
